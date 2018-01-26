@@ -1,0 +1,16 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+    color: #555;
+}
+.main {
+    color: #777;
+    font-weight: 100;
+}
+#cg {
+    width: 500px;
+    height: 500px;
+    display: inline-block;
+    border-radius: 5px;
+    overflow: hidden;
+}
