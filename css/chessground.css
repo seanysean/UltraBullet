@@ -125,6 +125,10 @@ piece.king.white {
 }
 .cg-board-wrap piece.ghost {
   opacity: 0.3;
+  position: absolute;
+  left: 0;
+  width: 12.5%;
+  height: 12.5%;
 }
 .cg-board-wrap svg {
   overflow: hidden;

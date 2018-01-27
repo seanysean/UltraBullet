@@ -1,9 +1,6 @@
 var chess = new Chess();
 var config = {
     coordinates: false,
-    highlight: {
-        check: true
-    },
     movable: {
         free: false,
         color: 'white',
@@ -11,6 +8,10 @@ var config = {
     },
     draggable: {
         showGhost: true
+    },
+    highlight: {
+        check: true,
+        lastMove: true
     }
 }
 var cground = Chessground(document.getElementById('cg'),config);
@@ -18,6 +19,7 @@ function aiMove(chess,cg) {
     return (orig,dest) => {
         var obj = { from: orig, to: dest,promotion: 'q' };
         var m = chess.move(obj);
+        check(chess,cground);
         if (m.flags.includes('p')) promote(cground,dest,'queen');
         if (!chess.game_over() && chess.turn() === 'b') {
             setTimeout(() => {
@@ -33,6 +35,7 @@ function aiMove(chess,cg) {
                     }
                 });
                 if (m2.flags.includes('p')) promote(cground,m2.to,rToRook(m2.promotion));
+                check(chess,cground);
                 cg.playPremove();
             }, 300);
         } else {
@@ -74,6 +77,22 @@ function rToRook(s) {
         r: 'rook',
     }
     return pieces[s];
+}
+function check(c,cg) {
+    //c -> chess, cg -> chessground, t -> turn;
+    if (c.in_check()) {
+        var pieces = cg.state.pieces
+        var turn = toColor(c);
+        var count = 0;
+        for (i in pieces) {
+            count++;
+            if (pieces[i].color === turn && pieces[i].role === 'king') {
+                cg.state.check = i;
+                cg.redrawAll();
+                return;
+            }
+        };
+    }
 }
 cground.set({
     movable: {
