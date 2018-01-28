@@ -20,6 +20,7 @@ function aiMove(chess,cg) {
         var obj = { from: orig, to: dest,promotion: 'q' };
         var m = chess.move(obj);
         check(chess,cground);
+        makeSound(m.flags);
         if (m.flags.includes('p')) promote(cground,dest,'queen');
         if (!chess.game_over() && chess.turn() === 'b') {
             setTimeout(() => {
@@ -36,6 +37,7 @@ function aiMove(chess,cg) {
                 });
                 if (m2.flags.includes('p')) promote(cground,m2.to,rToRook(m2.promotion));
                 check(chess,cground);
+                makeSound(m.flags);
                 cg.playPremove();
             }, 300);
         } else {
@@ -93,6 +95,17 @@ function check(c,cg) {
             }
         };
     }
+}
+function makeSound(m) {
+    var sound;
+    if (m.includes('c')) {
+        sound = new Audio('https://lichess1.org/assets/sound/standard/Capture.ogg');
+    } else if (chess.game_over()) {
+        sound = new Audio('https://lichess1.org/assets/sound/standard/Victory.ogg');
+    } else {
+        sound = new Audio('https://lichess1.org/assets/sound/standard/Move.ogg');
+    }
+    sound.play();
 }
 cground.set({
     movable: {
