@@ -17,7 +17,7 @@ var chess = new Chess(),
     capture: new Audio('https://lichess1.org/assets/sound/standard/Capture.ogg'),
     gameOver: new Audio('https://lichess1.org/assets/sound/standard/Victory.ogg'),
     move: new Audio('https://lichess1.org/assets/sound/standard/Move.ogg')
-},  ground = Chessground(document.getElementById('cg'),config);
+},  cground = Chessground(document.getElementById('cg'),config);
 function aiMove(chess,cg) {
     return (orig,dest) => {
         var obj = { from: orig, to: dest,promotion: 'q' };
