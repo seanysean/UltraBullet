@@ -1,5 +1,5 @@
-var chess = new Chess();
-var config = {
+var chess = new Chess(),
+    config = {
     coordinates: false,
     movable: {
         free: false,
@@ -13,8 +13,11 @@ var config = {
         check: true,
         lastMove: true
     }
-}
-var cground = Chessground(document.getElementById('cg'),config);
+},  sound = {
+    capture: new Audio('https://lichess1.org/assets/sound/standard/Capture.ogg'),
+    gameOver: new Audio('https://lichess1.org/assets/sound/standard/Victory.ogg'),
+    move: new Audio('https://lichess1.org/assets/sound/standard/Move.ogg')
+},  ground = Chessground(document.getElementById('cg'),config);
 function aiMove(chess,cg) {
     return (orig,dest) => {
         var obj = { from: orig, to: dest,promotion: 'q' };
@@ -97,15 +100,13 @@ function check(c,cg) {
     }
 }
 function makeSound(m) {
-    var sound;
-    if (m.includes('c')) {
-        sound = new Audio('https://lichess1.org/assets/sound/standard/Capture.ogg');
-    } else if (chess.game_over()) {
-        sound = new Audio('https://lichess1.org/assets/sound/standard/Victory.ogg');
+    if (chess.game_over()) {
+        sound.gameOver.play();
+    } else if (m.includes('c')) {
+        sound.capture.play();
     } else {
-        sound = new Audio('https://lichess1.org/assets/sound/standard/Move.ogg');
+        sound.move.play();
     }
-    sound.play();
 }
 cground.set({
     movable: {
