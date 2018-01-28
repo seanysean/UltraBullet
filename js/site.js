@@ -37,7 +37,7 @@ function aiMove(chess,cg) {
                 });
                 if (m2.flags.includes('p')) promote(cground,m2.to,rToRook(m2.promotion));
                 check(chess,cground);
-                makeSound(m.flags);
+                makeSound(m2.flags);
                 cg.playPremove();
             }, 300);
         } else {
