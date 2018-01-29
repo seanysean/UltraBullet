@@ -10,7 +10,34 @@ body {
 #cg {
     width: 500px;
     height: 500px;
-    display: inline-block;
-    border-radius: 5px;
     overflow: hidden;
+}
+.board {
+    width: 500px;
+    margin: auto;
+}
+.player-bar {
+    background: #e7e4e4;
+    font-weight: 400;
+    text-shadow: 1px 1px #424242;
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.player-bar:first-child {
+    border-radius: 5px 5px 0 0;
+}
+.player-bar:not(:first-child) {
+    border-radius: 0 0 5px 5px;
+}
+.player-bar .player, .player-bar .clock {
+    display: block;
+}
+.player-bar .player {
+    float: left;
+}
+.player-bar .clock {
+    float: right;
+    background: #fff;
+    padding: 0 5px;
 }

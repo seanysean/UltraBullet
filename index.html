@@ -5,13 +5,25 @@
         <title>Practice Ultrabullet</title>
         <link href="css/chessground.css" type="text/css" rel="stylesheet" />
         <link href="css/style.css" type="text/css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     <body>
         <h1 class="main">Practice Ultra</h1>
-        <div id="cg"></div>
+        <div class="board">
+            <div class="player-bar">
+                <div class="player">Math.random()</div>
+                <div id="clock1" class="clock">0:14</div>
+            </div>
+            <div id="cg"></div>
+            <div class="player-bar">
+                <div class="player">You</div>
+                <div id="clock2" class="clock">0:14</div>
+            </div>
+        </div>
         <p>Promotion: Queen</p>
         <script src="js/chess.min.js"></script>
         <script src="js/chessground.min.js"></script>
-        <script src="js/site.js"></script>
+        <script src="js/board.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
