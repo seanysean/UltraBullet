@@ -3,6 +3,74 @@ body {
     font-family: sans-serif;
     color: #555;
 }
+.overlay {
+    position: fixed;
+    background: RGBa(0,0,0,0.5);
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    transition: 0.2s ease;
+    opacity: 1;
+}
+.overlay .popup {
+    position: absolute;
+    background: #d6d6d6;
+    width: 20%;
+    padding: 10px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 30px #222;
+}
+.overlay .popup .heading {
+    font-weight: 100;
+    margin: 0;
+    font-size: 25px;
+}
+.overlay .popup .info {
+    font-size: 13px;
+}
+.overlay .popup .optgroup {
+    display: flex;
+}
+.overlay .popup .optgroup input {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    left: -9999px;
+    top: -9999px;
+}
+.overlay .popup .optgroup .opt {
+    flex-grow: 1;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.2s background ease
+}
+.overlay .popup .optgroup .opt:hover, 
+.overlay .popup #play:hover {
+    color: #4a6b4a;
+    background: #ccc;
+}
+.overlay .popup .optgroup input:checked + .opt {
+    background: #4a6b4a;
+    color: #ccc;
+}
+.overlay .popup #play {
+    margin-top: 10px;
+    font-size: 20px;
+    outline: none;
+    background: transparent;
+    border: none;
+    color: #555;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.overlay .popup #play:active {
+    box-shadow: inset 0 0 5px #777;
+}
 .main {
     color: #777;
     font-weight: 100;
@@ -10,7 +78,34 @@ body {
 #cg {
     width: 500px;
     height: 500px;
-    display: inline-block;
-    border-radius: 5px;
     overflow: hidden;
+}
+.board {
+    width: 500px;
+    margin: auto;
+}
+.player-bar {
+    background: #e7e4e4;
+    font-weight: 400;
+    text-shadow: 1px 1px #424242;
+    padding: 0 5px;
+    height: 30px;
+    line-height: 30px;
+}
+.player-bar:first-child {
+    border-radius: 5px 5px 0 0;
+}
+.player-bar:not(:first-child) {
+    border-radius: 0 0 5px 5px;
+}
+.player-bar .player, .player-bar .clock {
+    display: block;
+}
+.player-bar .player {
+    float: left;
+}
+.player-bar .clock {
+    float: right;
+    background: #fff;
+    padding: 0 5px;
 }
