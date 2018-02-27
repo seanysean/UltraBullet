@@ -85,12 +85,12 @@ body {
     margin: auto;
 }
 .player-bar {
-    background: #e7e4e4;
+    background: #e4e4e4;
     font-weight: 400;
-    text-shadow: 1px 1px #424242;
-    padding: 0 5px;
-    height: 30px;
-    line-height: 30px;
+    padding-left: 10px;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
 }
 .player-bar:first-child {
     border-radius: 5px 5px 0 0;
@@ -103,9 +103,13 @@ body {
 }
 .player-bar .player {
     float: left;
+    font-size: 20px;
 }
 .player-bar .clock {
     float: right;
     background: #fff;
-    padding: 0 5px;
+    padding: 0 20px;
+}
+.player-bar .clock.tick {
+    background: #eee;
 }

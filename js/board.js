@@ -138,25 +138,34 @@ function makeSound(m = '') {
         sound.move.play();
     }
 }
-var interv = setInterval(()=>console.log('nothing'),10000),
-    toMove = 'white';
+var toMove = 'white',
+    clockUpdate = false;
 function pressClock() {
     toMove = toMove === 'white' ? 'black' : 'white';
+    if (clockUpdate) {
+        window.clearInterval(clockUpdate);
+    }
     var html = {
         black: document.getElementById('clock1'),
         white: document.getElementById('clock2')
     }
-    window.clearInterval(interv);
     if (!ended) {
-        interv = setInterval(() => {
+        if (toMove === 'white') {
+            html.white.classList.add('tick');
+            html.black.classList.remove('tick');
+        } else {
+            html.black.classList.add('tick');
+            html.white.classList.remove('tick');
+        }
+        clockUpdate = setInterval(() => {
             clocks[toMove] = (clocks[toMove] - 0.1).toFixed(1);
-            html[toMove].innerHTML = '0:' + (clocks[toMove] > 9 ? '' : '0') + clocks[toMove];
+            html[toMove].innerHTML = '0:' + (clocks[toMove] > 9.9 ? '' : '0') + clocks[toMove];
             if (clocks[toMove] === (0).toFixed(1)) gameEnd();
         }, 100);
     }
 }
 function gameEnd() {
-    window.clearInterval(interv);
+    window.clearInterval(clockUpdate);
     ended = true;
     makeSound();
     cground.set({
