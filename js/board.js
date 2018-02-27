@@ -1,7 +1,25 @@
+var popup = document.getElementById('js-popup'),
+    play = document.getElementById('play'),
+    machineTimeMove = 300;
+
+play.addEventListener('click', function() {
+    popup.style.opacity = 0;
+    setTimeout(function() {
+        // A timeout so that the transition has time to complete before it is completely hidden.
+        popup.style.display = 'none';
+    }, 500);
+    var v = document.querySelector('.optgroup input:checked').value;
+    if (v) {
+        machineTimeMove = document.querySelector('.optgroup input:checked').value;
+    }
+    console.log(machineTimeMove);
+});
+
+
 var chess = new Chess(),
     clocks = {
-        white: 14,
-        black: 14
+        white: 15,
+        black: 15
     },
     config = {
     coordinates: false,
@@ -53,7 +71,7 @@ function aiMove(chess,cg) {
                 pressClock();
                 makeSound(m2.flags);
                 cg.playPremove();
-            }, 300);
+            }, machineTimeMove);
         } else {
             gameEnd();
         }

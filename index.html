@@ -8,22 +8,37 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     <body>
+        <div class="overlay" id="js-popup">
+            <div class="popup">
+                <h1 class="heading">Pick the speed of computer's moves</h1>
+                <p class="info">Slower is easier, the computer makes random moves.</p>
+                <div class="optgroup">
+                    <input type="radio" name="speed" value="100" id="one">
+                    <label class="opt" for="one">100ms/move</label>
+                    <input type="radio" name="speed" value="300" id="two" checked>
+                    <label class="opt" for="two">300ms/move</label>
+                    <input type="radio" name="speed" value="700" id="three">
+                    <label class="opt" for="three">700ms/move</label>
+                </div>
+                <button id="play">Play</button>
+            </div>
+        </div>
         <h1 class="main">Practice Ultra</h1>
         <div class="board">
             <div class="player-bar">
-                <div class="player">Math.random()</div>
-                <div id="clock1" class="clock">0:14</div>
+                <div class="player">Computer random</div>
+                <div id="clock1" class="clock">0:15</div>
             </div>
             <div id="cg"></div>
             <div class="player-bar">
                 <div class="player">You</div>
-                <div id="clock2" class="clock">0:14</div>
+                <div id="clock2" class="clock">0:15</div>
             </div>
         </div>
         <p>Promotion: Queen</p>
         <script src="js/chess.min.js"></script>
         <script src="js/chessground.min.js"></script>
-        <script src="js/board.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/board.js"></script>
     </body>
 </html>
