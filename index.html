@@ -8,8 +8,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     </head>
     <body>
-        <div class="overlay" id="js-popup">
-            <div class="popup">
+        <div class="overlay" id="js-overlay">
+            <div class="popup" id="js-popup-start">
                 <h1 class="heading">Pick the speed of computer's moves</h1>
                 <p class="info">Slower is easier, the computer makes random moves.</p>
                 <div class="optgroup">
@@ -20,7 +20,24 @@
                     <input type="radio" name="speed" value="700" id="three">
                     <label class="opt" for="three">700ms/move</label>
                 </div>
-                <button id="play">Play</button>
+                <button class="submit" id="play"><i class="fa fa-check"></i> Play</button>
+            </div>
+            <div class="popup" id="js-popup-gameEnd">
+                <h1 class="heading">The game has ended</h1>
+                <div class="optgroup">
+                    <button class="opt" id="js-end-pgn"><i class="fa fa-delicious"></i> Get PGN</button>
+                    <button class="opt" id="js-end-refresh"><i class="fa fa-refresh"></i> New game</button>
+                </div>
+                <p class="info">Created by Sean B in 2018</p>
+                <a target="_blank" href="https://github.com/seanysean/UltraBullet">Github</a>
+            </div>
+            <div class="popup" id="js-popup-pgn">
+                <h1 class="heading">View game PGN</h1>
+                <div class="pgn-container">
+                    <textarea id="pgn-all" readonly spellcheck="false"></textarea>
+                    <button id="copy-pgn"><i class="fa fa-copy"></i> Copy</button>
+                </div>
+                <button class="submit" id="pgn-close"><i class="fa fa-close"></i> Close</button>
             </div>
         </div>
         <h1 class="main">Practice Ultra</h1>

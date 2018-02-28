@@ -3,6 +3,13 @@ body {
     font-family: sans-serif;
     color: #555;
 }
+a {
+    color: #757070;
+    transition: 0.2s ease;
+}
+a:hover {
+    opacity: 0.85;
+}
 .overlay {
     position: fixed;
     background: RGBa(0,0,0,0.5);
@@ -13,6 +20,7 @@ body {
     z-index: 20;
     transition: 0.2s ease;
     opacity: 1;
+    display: none;
 }
 .overlay .popup {
     position: absolute;
@@ -24,6 +32,7 @@ body {
     transform: translate(-50%,-50%);
     border-radius: 10px;
     box-shadow: 0 0 30px #222;
+    display: none;
 }
 .overlay .popup .heading {
     font-weight: 100;
@@ -35,6 +44,7 @@ body {
 }
 .overlay .popup .optgroup {
     display: flex;
+    margin-top: 10px;
 }
 .overlay .popup .optgroup input {
     position: fixed;
@@ -43,14 +53,21 @@ body {
     left: -9999px;
     top: -9999px;
 }
-.overlay .popup .optgroup .opt {
+.overlay .popup .optgroup .opt,
+.overlay .popup .pgn-container #copy-pgn {
     flex-grow: 1;
     padding: 10px;
     cursor: pointer;
-    transition: 0.2s background ease
+    transition: 0.2s background ease;
+    border: none;
+    background: transparent;
+    color: #444;
+    font-size: 15px;
+    outline: none;
 }
 .overlay .popup .optgroup .opt:hover, 
-.overlay .popup #play:hover {
+.overlay .popup .submit:hover,
+.overlay .popup .pgn-container #copy-pgn:hover {
     color: #4a6b4a;
     background: #ccc;
 }
@@ -58,7 +75,7 @@ body {
     background: #4a6b4a;
     color: #ccc;
 }
-.overlay .popup #play {
+.overlay .popup .submit {
     margin-top: 10px;
     font-size: 20px;
     outline: none;
@@ -68,8 +85,38 @@ body {
     cursor: pointer;
     padding: 5px 10px;
 }
-.overlay .popup #play:active {
+.overlay .popup .submit:active {
     box-shadow: inset 0 0 5px #777;
+}
+.overlay .popup .pgn-container {
+    position: relative;
+}
+.overlay .popup .pgn-container #pgn-all {
+    font-size: 13px;
+    padding: 5px;
+    width: calc(100% - 10px);
+    display: block;
+    height: 200px;
+    background:  transparent;
+    text-align: left;
+    border: none;
+    resize: vertical;
+    color: #444;
+    outline: none;
+}
+.overlay .popup .pgn-container #copy-pgn {
+    display: block;
+    margin: auto;
+    padding: 3px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    transition: 0.2s opacity ease;
+}
+.overlay .popup .pgn-container #pgn-all:hover + #copy-pgn,
+.overlay .popup .pgn-container #copy-pgn:hover {
+    opacity: 1;
 }
 .main {
     color: #777;

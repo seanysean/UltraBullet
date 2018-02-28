@@ -1,18 +1,35 @@
-var popup = document.getElementById('js-popup'),
-    play = document.getElementById('play'),
+var Popup = {
+    ovr: document.getElementById('js-overlay'),
+    close(which,notOvr) {
+        // Ovr refers to .overlay
+        if (!notOvr) {
+            this.ovr.style.opacity = 0;
+            setTimeout(function() {
+                Popup.ovr.style.display = 'none';
+                document.getElementById('js-popup-' + which).style.display = 'none';
+            }, 500);
+        } else {
+            document.getElementById('js-popup-' + which).style.display = 'none';
+        }
+    },
+    open(which) {
+        this.ovr.style.display = 'block';
+        document.getElementById('js-popup-' + which).style.display = 'block';
+        this.ovr.style.opacity = 1;
+    }
+}
+
+var play = document.getElementById('play'),
     machineTimeMove = 300;
 
+Popup.open('start');
+
 play.addEventListener('click', function() {
-    popup.style.opacity = 0;
-    setTimeout(function() {
-        // A timeout so that the transition has time to complete before it is completely hidden.
-        popup.style.display = 'none';
-    }, 500);
+    Popup.close('start');
     var v = document.querySelector('.optgroup input:checked').value;
     if (v) {
         machineTimeMove = document.querySelector('.optgroup input:checked').value;
     }
-    console.log(machineTimeMove);
 });
 
 
@@ -171,6 +188,9 @@ function gameEnd() {
     cground.set({
         viewOnly: true
     });
+    setTimeout(function() {
+        Popup.open('gameEnd');
+    },500);
 }
 cground.set({
     movable: {
@@ -179,3 +199,32 @@ cground.set({
         }
     }
 });
+const endbtns = {
+    pgn: document.getElementById('js-end-pgn'),
+    refresh: document.getElementById('js-end-refresh'),
+    pgnClose: document.getElementById('pgn-close'),
+    pgnAll: document.getElementById('pgn-all'),
+    copyPgn: document.getElementById('copy-pgn')
+}
+
+endbtns.pgn.addEventListener('click',()=>{
+    Popup.open('pgn');
+    endbtns.pgnAll.innerHTML = `[White "You"]
+[Black "Random ${machineTimeMove}ms/move"]
+[Site "https://seanysean.github.io/UltraBullet/"]
+[Variant "Standard"]
+
+${chess.pgn()}`;
+});
+endbtns.copyPgn.addEventListener('click',()=>{
+    endbtns.pgnAll.select();
+    document.execCommand("Copy");
+    endbtns.copyPgn.innerHTML = `<i class="fa fa-check"></i> Copied!`;
+});
+endbtns.pgnClose.addEventListener('click',()=>{
+    Popup.close('pgn', true);
+});
+
+endbtns.refresh.addEventListener('click',()=>{
+    window.location.reload();
+})
