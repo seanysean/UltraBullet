@@ -132,15 +132,13 @@ function check(c,cg) {
     if (c.in_check()) {
         var pieces = cg.state.pieces
         var turn = toColor(c);
-        var count = 0;
         for (i in pieces) {
-            count++;
             if (pieces[i].color === turn && pieces[i].role === 'king') {
                 cg.state.check = i;
                 cg.redrawAll();
                 return;
             }
-        };
+        }
     }
 }
 function makeSound(m = '') {
